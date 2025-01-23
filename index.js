@@ -50,6 +50,15 @@ app.get("/teas", (req, res) => {
   res.status(200).send(teaData);
 });
 
+//read Single
+app.get("/teas/:id", (req, res) => {
+  const tea = teaData.find((t) => t.id === parseInt(req.params.id));
+  if (tea < 0) {
+    return res.status(404).send("Tea not found");
+  }
+  return res.status(200).send(tea);
+});
+
 // update
 app.put("/teas/:id", (req, res) => {
   const tea = teaData.find((t) => t.id === parseInt(req.params.id));
